@@ -29,7 +29,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-connectDatabase("mongodb+srv://admin:admin@cluster0.3g5rbuq.mongodb.net/auth");
+connectDatabase("mongodb+srv://sumit:sumit@cluster0.gvjdh.mongodb.net/auth");
 
 //basic authentication route
 app.use(router);
