@@ -9,7 +9,7 @@ const ResetPassword = () => {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
-  const API_URL = "http://localhost:5000";
+  const API_URL = "https://auth-v1-1gd1.onrender.com";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
