@@ -12,7 +12,7 @@ import Dashboard from "./Dashboard";
 import ForgotPassword from "./utils/ForgotPassword";
 import ResetPassword from "./utils/ResetPassword";
 
-const API_URL = "https://auth-v1-4.onrender.com";
+const API_URL = "https://auth-v1-1gd1.onrender.com";
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const passwordRegex =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
