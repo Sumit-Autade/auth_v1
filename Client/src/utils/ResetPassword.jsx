@@ -1,38 +1,82 @@
-import { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+const passwordRegex =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
 const ResetPassword = () => {
-  const { token } = useParams();
   const navigate = useNavigate();
+  const [otp, setOtp] = useState("");
   const [newPassword, setNewPassword] = useState("");
-  const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
+  // Read email from cookies
+  const email = Cookies.get("resetEmail");
   const API_URL = "https://auth-v1-1gd1.onrender.com";
+
+  useEffect(() => {
+    if (!email) {
+      toast.error("Session expired. Please request OTP again.");
+      navigate("/forgot-password");
+    }
+  }, [email, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate password
+    if (!passwordRegex.test(newPassword)) {
+      setError(
+        "Password must be at least 8 characters long, include an uppercase letter, a lowercase letter, a number, and a special character."
+      );
+      toast.error(
+        "Password must be at least 8 characters long, include an uppercase letter, a lowercase letter, a number, and a special character."
+      );
+      return;
+    }
+
     try {
-      const res = await axios.post(`${API_URL}/reset-password/${token}`, { newPassword });
-      setMessage(res.data.msg);
       setError("");
-      setTimeout(() => navigate("/login"), 3000);
+      const res = await axios.post(
+        `${API_URL}/reset-password`,
+        { email, otp, newPassword },
+        { withCredentials: true }
+      );
+
+      toast.success(res.data?.msg || "Password reset successfully!");
+
+      setTimeout(() => {
+        Cookies.remove("resetEmail"); // Remove email cookie after use
+        navigate("/login");
+      }, 3000);
     } catch (err) {
       setError(err.response?.data?.msg || "An error occurred");
-      setMessage("");
+      toast.error(err.response?.data?.msg || "An error occurred");
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
+    <div className="min-h-screen flex items-center justify-center bg-blue-50 p-6">
       <div className="w-full max-w-md bg-white shadow-lg p-6 rounded-lg">
-        <h2 className="text-lg font-semibold mb-4">Reset Password</h2>
-        {message && <p className="text-green-500">{message}</p>}
+        <h2 className="text-lg font-semibold mb-4 text-blue-600">
+          Reset Password
+        </h2>
         {error && <p className="text-red-500">{error}</p>}
         <form onSubmit={handleSubmit} className="space-y-3">
           <input
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border rounded border-blue-300 focus:ring focus:ring-blue-200"
+            type="text"
+            placeholder="Enter OTP"
+            value={otp}
+            onChange={(e) => setOtp(e.target.value)}
+            required
+          />
+          <input
+            className="w-full p-2 border rounded border-blue-300 focus:ring focus:ring-blue-200"
             type="password"
             placeholder="Enter new password"
             value={newPassword}
@@ -44,6 +88,7 @@ const ResetPassword = () => {
           </button>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 };
