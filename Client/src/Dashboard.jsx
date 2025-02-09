@@ -38,87 +38,93 @@ const Dashboard = ({ user }) => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
-      <div className="w-full max-w-lg bg-white shadow-lg p-6 rounded-lg">
-        <h2 className="text-2xl font-semibold mb-4 text-center">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-300 p-6">
+      <div className="w-full max-w-lg bg-white shadow-xl p-8 rounded-2xl">
+        <h2 className="text-3xl font-bold text-center text-blue-700 mb-6">
           Create Your Profile
         </h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-5">
+  
+          {/* Name Field */}
           <div>
-            <label className="block text-gray-700">Name</label>
+            <label className="block text-blue-900 font-semibold">Name</label>
             <input
               type="text"
               name="name"
               value={profile.name}
               onChange={handleChange}
-              className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-blue-50"
               required
             />
           </div>
-
+  
+          {/* Email Field */}
           <div>
-            <label className="block text-gray-700">Email</label>
+            <label className="block text-blue-900 font-semibold">Email</label>
             <input
               type="email"
               name="email"
               value={profile.email}
               onChange={handleChange}
-              className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-blue-50"
               required
             />
           </div>
-
+  
+          {/* University Field */}
           <div>
-            <label className="block text-gray-700">University</label>
+            <label className="block text-blue-900 font-semibold">University</label>
             <input
               type="text"
               name="university"
               value={profile.university}
               onChange={handleChange}
-              className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-blue-50"
               required
             />
           </div>
-
+  
+          {/* College Field */}
           <div>
-            <label className="block text-gray-700">College</label>
+            <label className="block text-blue-900 font-semibold">College</label>
             <input
               type="text"
               name="college"
               value={profile.college}
               onChange={handleChange}
-              className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-blue-50"
               required
             />
           </div>
-
+  
+          {/* Semester Field */}
           <div>
-            <label className="block text-gray-700">Semester</label>
+            <label className="block text-blue-900 font-semibold">Semester</label>
             <input
               type="text"
               name="semester"
               value={profile.semester}
               onChange={handleChange}
-              className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-blue-50"
               required
             />
           </div>
-
+  
+          {/* Goals Field */}
           <div>
-            <label className="block text-gray-700">Goals (Objective)</label>
+            <label className="block text-blue-900 font-semibold">Goals (Objective)</label>
             <textarea
               name="goals"
               value={profile.goals}
               onChange={handleChange}
-              className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-blue-50"
               required
             ></textarea>
           </div>
-
+  
+          {/* Time Left to Study */}
           <div>
-            <label className="block text-gray-700">
-              Time Left to Study (in months)
-            </label>
+            <label className="block text-blue-900 font-semibold">Time Left to Study (in months)</label>
             <input
               type="number"
               name="timeLeft"
@@ -126,27 +132,29 @@ const Dashboard = ({ user }) => {
               max="12"
               value={profile.timeLeft}
               onChange={handleChange}
-              className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-blue-50"
               required
             />
           </div>
-
+  
+          {/* Proficiency in Subject */}
           <div>
-            <label className="block text-gray-700">Proficiency in Subject</label>
+            <label className="block text-blue-900 font-semibold">Proficiency in Subject</label>
             <select
               name="proficiency"
               value={profile.proficiency}
               onChange={handleChange}
-              className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-blue-50"
             >
               <option value="Beginner">Beginner</option>
               <option value="Intermediate">Intermediate</option>
               <option value="Advanced">Advanced</option>
             </select>
           </div>
-
+  
+          {/* Study Hours Weekdays */}
           <div>
-            <label className="block text-gray-700">Study Hours (Weekdays)</label>
+            <label className="block text-blue-900 font-semibold">Study Hours (Weekdays)</label>
             <input
               type="number"
               name="studyHoursWeekdays"
@@ -154,13 +162,14 @@ const Dashboard = ({ user }) => {
               max="24"
               value={profile.studyHoursWeekdays}
               onChange={handleChange}
-              className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-blue-50"
               required
             />
           </div>
-
+  
+          {/* Study Hours Weekends */}
           <div>
-            <label className="block text-gray-700">Study Hours (Weekends)</label>
+            <label className="block text-blue-900 font-semibold">Study Hours (Weekends)</label>
             <input
               type="number"
               name="studyHoursWeekends"
@@ -168,14 +177,15 @@ const Dashboard = ({ user }) => {
               max="24"
               value={profile.studyHoursWeekends}
               onChange={handleChange}
-              className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-blue-50"
               required
             />
           </div>
-
+  
+          {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+            className="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition-all shadow-md"
           >
             Continue
           </button>
